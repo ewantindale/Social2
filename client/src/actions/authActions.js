@@ -33,7 +33,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-export const register = ({ name, password }) => (dispatch) => {
+/* export const register = ({ name, password }) => (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export const register = ({ name, password }) => (dispatch) => {
         type: REGISTER_FAIL,
       });
     });
-};
+}; */
 
 // Login user
 export const login = ({ name, password }) => (dispatch) => {

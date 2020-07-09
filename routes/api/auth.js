@@ -9,7 +9,9 @@ const User = require("../../models/User");
 
 // POST /api/auth
 // PUBLIC
-// Authorize a user
+// Login a user if it exists, otherwise create a new user. Returns authentication token + user object
+// Response status code is 200 when logging in, 201 if a new user is created.
+// TODO: Refactor this.
 router.post("/", (req, res) => {
   const { name, password } = req.body;
 
@@ -20,28 +22,56 @@ router.post("/", (req, res) => {
 
   // Check for existing user
   User.findOne({ name }).then((user) => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+    if (!user) {
+      // User not found, create a new user
+      const newUser = new User({ name, password });
 
-    // Validate password
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
-
-      jwt.sign(
-        { id: user.id },
-        process.env.jwtSecret,
-        { expiresIn: 3600 },
-        (err, token) => {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
-          res.json({
-            token,
-            user: {
-              id: user.id,
-              name: user.name,
-            },
+          newUser.password = hash;
+          newUser.save().then((user) => {
+            jwt.sign(
+              { id: user.id },
+              process.env.jwtSecret,
+              { expiresIn: 3600 },
+              (err, token) => {
+                if (err) throw err;
+                return res.status(201).json({
+                  token,
+                  user: {
+                    id: user.id,
+                    name: user.name,
+                  },
+                });
+              }
+            );
           });
-        }
-      );
-    });
+        });
+      });
+    } else {
+      // User found, validate password
+      bcrypt.compare(password, user.password).then((isMatch) => {
+        if (!isMatch)
+          return res.status(400).json({ msg: "Invalid credentials" });
+
+        jwt.sign(
+          { id: user.id },
+          process.env.jwtSecret,
+          { expiresIn: 3600 },
+          (err, token) => {
+            if (err) throw err;
+            return res.status(200).json({
+              token,
+              user: {
+                id: user.id,
+                name: user.name,
+              },
+            });
+          }
+        );
+      });
+    }
   });
 });
 

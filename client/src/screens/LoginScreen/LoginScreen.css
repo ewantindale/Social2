@@ -51,3 +51,7 @@ form input:focus {
 .error {
   color: red;
 }
+
+.faded {
+  color: grey;
+}

@@ -7,14 +7,16 @@ import { login } from "../../actions/authActions";
 import "./LoginScreen.css";
 
 const LoginScreen = ({ isAuthenticated, login, error }) => {
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
-  let history = useHistory();
-  let location = useLocation();
-
-  let { from } = location.state || { from: { pathname: "/" } };
+  const usernameInput = useRef(null);
+  const passwordInput = useRef(null);
 
   const prevErrorRef = useRef();
 
@@ -55,6 +57,8 @@ const LoginScreen = ({ isAuthenticated, login, error }) => {
 
     setUsername("");
     setPassword("");
+    usernameInput.current.value = "";
+    passwordInput.current.value = "";
   };
 
   return (
@@ -62,6 +66,7 @@ const LoginScreen = ({ isAuthenticated, login, error }) => {
       <form>
         <h1>Welcome to Social</h1>
         <input
+          ref={usernameInput}
           type="text"
           name="username"
           id="username"
@@ -69,6 +74,7 @@ const LoginScreen = ({ isAuthenticated, login, error }) => {
           onChange={handleChangeUsername}
         />
         <input
+          ref={passwordInput}
           type="password"
           name="password"
           id="password"
@@ -79,6 +85,9 @@ const LoginScreen = ({ isAuthenticated, login, error }) => {
         {/* <input type="submit" value="Log In" /> */}
         <button onClick={handleSubmit}>Log In</button>
         <span className="error">{errorMessage ? errorMessage : ""}</span>
+        <span className="faded">
+          If you don't already have an account, one will be created for you.
+        </span>
       </form>
     </div>
   );
