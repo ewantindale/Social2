@@ -3,10 +3,11 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { login } from "../../actions/authActions";
+import { clearErrors } from "../../actions/errorActions";
 
 import "./LoginScreen.css";
 
-const LoginScreen = ({ isAuthenticated, login, error }) => {
+const LoginScreen = ({ isAuthenticated, login, error, clearErrors }) => {
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
@@ -34,6 +35,7 @@ const LoginScreen = ({ isAuthenticated, login, error }) => {
   useEffect(() => {
     if (isAuthenticated) {
       history.replace(from);
+      clearErrors();
     }
   });
 
@@ -98,4 +100,4 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { login })(LoginScreen);
+export default connect(mapStateToProps, { login, clearErrors })(LoginScreen);
