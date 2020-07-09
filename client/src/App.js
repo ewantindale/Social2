@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import store from "./store";
+import { loadUser } from "./actions/authActions";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import PrivateRoute from "./PrivateRoute";
 
-function App() {
+export default function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <PrivateRoute exact path="/">
+          <HomeScreen />
+        </PrivateRoute>
+        <Route path="/login">
+          <LoginScreen />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
