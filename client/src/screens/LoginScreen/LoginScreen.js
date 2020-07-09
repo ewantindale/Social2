@@ -59,8 +59,8 @@ const LoginScreen = ({ isAuthenticated, login, error, clearErrors }) => {
 
     setUsername("");
     setPassword("");
-    usernameInput.current.value = "";
-    passwordInput.current.value = "";
+    usernameInput.current.value = null;
+    passwordInput.current.value = null;
   };
 
   return (
