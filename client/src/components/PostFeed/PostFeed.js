@@ -5,12 +5,12 @@ import { getPosts } from "../../actions/postActions";
 function PostFeed({ posts, getPosts }) {
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [getPosts]);
 
   return (
     <div>
       {posts.map((post) => (
-        <div>
+        <div key={post._id}>
           <div>{post.authorId}</div>
           <div>{post.body}</div>
         </div>

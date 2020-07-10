@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { addPost } from "../../actions/postActions";
 import { connect } from "react-redux";
 
-function CreatePost({ user }) {
+function CreatePost({ user, addPost }) {
   const [postText, setPostText] = useState(null);
+
+  const postTextInput = useRef(null);
 
   const handlePostInputChange = (e) => {
     setPostText(e.target.value);
@@ -18,7 +20,7 @@ function CreatePost({ user }) {
 
     addPost(newPost);
 
-    setPostText(null);
+    postTextInput.current.value = null;
   };
 
   return (
@@ -29,6 +31,7 @@ function CreatePost({ user }) {
           name="post"
           id="post"
           placeholder="post"
+          ref={postTextInput}
           onChange={handlePostInputChange}
         />
         <button onClick={handlePostSubmit}>Post</button>
@@ -41,4 +44,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, {})(CreatePost);
+export default connect(mapStateToProps, { addPost })(CreatePost);
