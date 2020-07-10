@@ -129,11 +129,12 @@ a {
     display: flex;
     color: $light-color;
     align-items: center;
+
     svg {
       font-size: 1.5rem;
       margin-right: 1rem;
     }
-    padding-left: 1rem;
+    padding: 1rem 0 1rem 1rem;
   }
   h1 {
     margin: 0;
@@ -171,7 +172,8 @@ a {
 }
 
 .home-screen {
-  margin-top: 50px;
+  margin-top: 32px;
+  padding-top: 2rem;
   h2 {
     font-family: "Roboto Condensed";
     padding: 0 0.5rem;
@@ -184,22 +186,25 @@ a {
 
 .create-post {
   display: flex;
+  width: 100%;
   margin-bottom: 1rem;
-  padding: 0 0.5rem;
 
   input {
     width: 100%;
     background: none;
     border: none;
-    border-bottom: 1px solid lightgrey;
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    padding: 1rem;
   }
 
   button {
     @extend %button;
     font-weight: bold;
+    font-size: 1rem;
+    padding: 1rem 2rem;
     float: right;
+    margin-right: 1rem;
   }
 }
 
@@ -223,12 +228,11 @@ a {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1000px) {
   .sidenav {
     display: block;
     position: relative;
     background-color: $light-color;
-
     width: 25%;
     text-align: left;
     padding: 1rem 4rem;
@@ -261,7 +265,17 @@ a {
   }
 
   .home-screen {
+    .create-post {
+      form {
+        width: 100%;
+      }
+      button {
+        margin-right: 0;
+      }
+    }
     margin: 0;
+    padding: 0;
+    padding-top: 1rem;
     h2 {
       display: block;
     }

@@ -124,7 +124,7 @@ a {
   display: flex;
   color: #fbfcff;
   align-items: center;
-  padding-left: 1rem;
+  padding: 1rem 0 1rem 1rem;
 }
 
 .sidenav .header svg {
@@ -169,7 +169,8 @@ a {
 }
 
 .home-screen {
-  margin-top: 50px;
+  margin-top: 32px;
+  padding-top: 2rem;
   border-left: 1px solid lightgrey;
   display: flex;
   flex-direction: column;
@@ -183,22 +184,25 @@ a {
 
 .create-post {
   display: flex;
+  width: 100%;
   margin-bottom: 1rem;
-  padding: 0 0.5rem;
 }
 
 .create-post input {
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 1px solid lightgrey;
   margin-bottom: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
 
 .create-post button {
   font-weight: bold;
+  font-size: 1rem;
+  padding: 1rem 2rem;
   float: right;
+  margin-right: 1rem;
 }
 
 .post-feed {
@@ -224,7 +228,7 @@ a {
   font-weight: bold;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1000px) {
   .sidenav {
     display: block;
     position: relative;
@@ -252,6 +256,14 @@ a {
   }
   .home-screen {
     margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+  }
+  .home-screen .create-post form {
+    width: 100%;
+  }
+  .home-screen .create-post button {
+    margin-right: 0;
   }
   .home-screen h2 {
     display: block;
