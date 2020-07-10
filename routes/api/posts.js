@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const Post = require("../../models/Post");
-const Like = require("../../models/Like");
 
 // GET /api/posts
 // PRIVATE
