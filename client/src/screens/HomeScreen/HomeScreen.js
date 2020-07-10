@@ -4,7 +4,7 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 const HomeScreen = () => {
   return (
     <div className="home-screen">
-      <div class="header">
+      <div className="header">
         <h2>Home</h2>
       </div>
       <CreatePost />

@@ -4,6 +4,7 @@ import {
   DELETE_POST,
   POSTS_LOADING,
   LOGOUT_SUCCESS,
+  LIKE_POST,
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +29,24 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts: [action.payload, ...state.posts],
+      };
+    case LIKE_POST:
+      return {
+        ...state,
+        posts: [
+          ...state.posts.map((post) =>
+            post._id === action.payload.postId
+              ? {
+                  ...post,
+                  likedBy: post.likedBy.includes(action.payload.userId)
+                    ? post.likedBy.filter(
+                        (likeUserId) => likeUserId !== action.payload.userId
+                      )
+                    : [...post.likedBy, action.payload.userId],
+                }
+              : post
+          ),
+        ],
       };
     case POSTS_LOADING:
       return {
