@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 
-import "./LoginScreen.css";
-
 const LoginScreen = ({ isAuthenticated, login, error, clearErrors }) => {
   let history = useHistory();
   let location = useLocation();
@@ -37,7 +35,7 @@ const LoginScreen = ({ isAuthenticated, login, error, clearErrors }) => {
       history.replace(from);
       clearErrors();
     }
-  });
+  }, [isAuthenticated, clearErrors, from, history]);
 
   const handleChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -64,7 +62,7 @@ const LoginScreen = ({ isAuthenticated, login, error, clearErrors }) => {
   };
 
   return (
-    <div className="container">
+    <div className="login-screen">
       <form>
         <h1>Welcome to Social</h1>
         <input
