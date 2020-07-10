@@ -118,6 +118,11 @@ a {
 
 .sidenav {
   text-align: center;
+
+  h1 {
+    margin: 0;
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -129,16 +134,21 @@ a {
       font-size: 30px;
       line-height: 1.6;
     }
+
+    li a:hover {
+      color: $light-color;
+      background-color: $primary-color;
+    }
   }
 
   ul.navClosed {
     display: none;
   }
 }
+
 @media only screen and (min-width: 768px) {
   .app {
     display: flex;
-    justify-content: center;
   }
   .sidenav,
   .feed {
@@ -151,6 +161,10 @@ a {
 
   .feed {
     width: 50%;
+  }
+
+  .sidenav ul.navClosed {
+    display: block;
   }
 }
 

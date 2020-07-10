@@ -1,8 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
-
+import PostFeed from "../../components/PostFeed/PostFeed";
+import CreatePost from "../../components/CreatePost/CreatePost";
 const HomeScreen = () => {
-  return <div className="home-screen">Feed</div>;
+  return (
+    <div className="home-screen">
+      <CreatePost />
+      <PostFeed />
+    </div>
+  );
 };
 
-export default connect(null, {})(HomeScreen);
+export default HomeScreen;

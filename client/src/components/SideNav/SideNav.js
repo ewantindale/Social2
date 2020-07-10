@@ -4,7 +4,7 @@ import { logout } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 
 const SideNav = ({ logout }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="sidenav">
