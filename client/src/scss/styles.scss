@@ -1,4 +1,5 @@
 @import "config";
+@import "buttons";
 
 /* latin */
 @font-face {
@@ -50,6 +51,11 @@ body {
   background-color: $light-color;
 }
 
+.app {
+  display: flex;
+  justify-content: center;
+}
+
 h1 {
   font-family: "Playfair Display";
   font-weight: 800;
@@ -98,6 +104,10 @@ a {
       box-sizing: border-box;
     }
 
+    button {
+      @extend %button;
+    }
+
     input {
       background-color: $light-color;
       border: solid 1px $primary-color;
@@ -106,33 +116,51 @@ a {
     input:focus {
       border-width: 2px;
     }
-
-    button {
-      background-color: $primary-color;
-      color: $light-color;
-      border: solid 1px $primary-color;
-      text-transform: uppercase;
-    }
   }
 }
 
 .sidenav {
-  text-align: center;
+  display: block;
+  position: fixed;
+  background-color: $primary-color;
+  width: 100%;
 
+  .header {
+    display: flex;
+    color: $light-color;
+    align-items: center;
+    svg {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+    padding-left: 1rem;
+  }
   h1 {
     margin: 0;
+    text-align: left;
+    font-size: 1.5rem;
+    color: $light-color;
+  }
+
+  ul.navClosed {
+    display: none;
   }
 
   ul {
+    display: block;
     list-style: none;
-    padding: 0;
-
+    padding: 0 0 0 1rem;
+    margin: 0;
+    li {
+      border-top: 1px solid $light-color;
+    }
     li a {
       color: $primary-color;
-      font-family: "Abel";
+      font-family: "Abel", sans-serif;
       text-transform: uppercase;
       font-size: 30px;
       line-height: 1.6;
+      color: $light-color;
     }
 
     li a:hover {
@@ -140,31 +168,103 @@ a {
       background-color: $primary-color;
     }
   }
+}
 
-  ul.navClosed {
+.home-screen {
+  margin-top: 50px;
+  h2 {
+    font-family: "Roboto Condensed";
+    padding: 0 0.5rem;
     display: none;
+  }
+  border-left: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-post {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+
+  input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  button {
+    @extend %button;
+    font-weight: bold;
+    float: right;
+  }
+}
+
+.post-feed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  .post {
+    border-bottom: 1px solid lightgrey;
+    padding: 0.5rem;
+  }
+  .post-date {
+    color: grey;
+    float: right;
+    font-size: 0.8rem;
+  }
+  .post-author {
+    font-weight: bold;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .app {
-    display: flex;
-  }
-  .sidenav,
-  .feed {
-    flex: left;
-  }
-
   .sidenav {
+    display: block;
+    position: relative;
+    background-color: $light-color;
+
     width: 25%;
+    text-align: left;
+    padding: 1rem 4rem;
+
+    svg {
+      display: none;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: $primary-color;
+      text-align: left;
+    }
+
+    ul {
+      li {
+        a {
+          color: $primary-color;
+        }
+      }
+    }
+
+    ul.navClosed {
+      display: block;
+    }
   }
 
   .feed {
     width: 50%;
   }
 
-  .sidenav ul.navClosed {
-    display: block;
+  .home-screen {
+    margin: 0;
+    h2 {
+      display: block;
+    }
   }
 }
 

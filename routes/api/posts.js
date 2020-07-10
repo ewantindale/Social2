@@ -19,6 +19,7 @@ router.get("/", auth, (req, res) => {
 router.post("/", auth, (req, res) => {
   const newPost = new Post({
     authorId: req.user.id,
+    authorName: req.user.name,
     body: req.body.body,
   });
 

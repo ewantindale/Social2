@@ -14,7 +14,6 @@ function CreatePost({ user, addPost }) {
   const handlePostSubmit = (e) => {
     e.preventDefault();
     const newPost = {
-      authorId: user.id,
       body: postText,
     };
 
@@ -24,13 +23,13 @@ function CreatePost({ user, addPost }) {
   };
 
   return (
-    <div>
+    <div className="create-post">
       <form>
         <input
           type="text"
           name="post"
           id="post"
-          placeholder="post"
+          placeholder="What's on your mind?"
           ref={postTextInput}
           onChange={handlePostInputChange}
         />

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions/postActions";
+import moment from "moment";
 
 function PostFeed({ posts, getPosts }) {
   useEffect(() => {
@@ -8,11 +9,12 @@ function PostFeed({ posts, getPosts }) {
   }, [getPosts]);
 
   return (
-    <div>
-      {posts.map((post) => (
-        <div key={post._id}>
-          <div>{post.authorId}</div>
-          <div>{post.body}</div>
+    <div className="post-feed">
+      {posts.map(({ _id, date, authorName, body }) => (
+        <div key={_id} className="post">
+          <div className="post-date">{moment(date).fromNow()}</div>
+          <div className="post-author">{authorName}</div>
+          <div className="post-body">{body}</div>
         </div>
       ))}
     </div>

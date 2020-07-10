@@ -1,3 +1,15 @@
+.login-screen form button, .create-post button {
+  background-color: #05204a;
+  color: #fbfcff;
+  border: solid 1px #05204a;
+  text-transform: uppercase;
+  padding: 8px 20px;
+}
+
+.login-screen form button:hover, .create-post button:hover {
+  background-color: #0b49aa;
+}
+
 /* latin */
 @font-face {
   font-family: "Playfair Display";
@@ -35,6 +47,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fbfcff;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -96,32 +113,54 @@ a {
   border-width: 2px;
 }
 
-.login-screen form button {
+.sidenav {
+  display: block;
+  position: fixed;
   background-color: #05204a;
-  color: #fbfcff;
-  border: solid 1px #05204a;
-  text-transform: uppercase;
+  width: 100%;
 }
 
-.sidenav {
-  text-align: center;
+.sidenav .header {
+  display: flex;
+  color: #fbfcff;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.sidenav .header svg {
+  font-size: 1.5rem;
+  margin-right: 1rem;
 }
 
 .sidenav h1 {
   margin: 0;
+  text-align: left;
+  font-size: 1.5rem;
+  color: #fbfcff;
+}
+
+.sidenav ul.navClosed {
+  display: none;
 }
 
 .sidenav ul {
+  display: block;
   list-style: none;
-  padding: 0;
+  padding: 0 0 0 1rem;
+  margin: 0;
+}
+
+.sidenav ul li {
+  border-top: 1px solid #fbfcff;
 }
 
 .sidenav ul li a {
   color: #05204a;
-  font-family: "Abel";
+  font-family: "Abel", sans-serif;
   text-transform: uppercase;
   font-size: 30px;
   line-height: 1.6;
+  color: #fbfcff;
 }
 
 .sidenav ul li a:hover {
@@ -129,25 +168,92 @@ a {
   background-color: #05204a;
 }
 
-.sidenav ul.navClosed {
+.home-screen {
+  margin-top: 50px;
+  border-left: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-screen h2 {
+  font-family: "Roboto Condensed";
+  padding: 0 0.5rem;
   display: none;
 }
 
+.create-post {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.create-post input {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.create-post button {
+  font-weight: bold;
+  float: right;
+}
+
+.post-feed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+}
+
+.post-feed .post {
+  border-bottom: 1px solid lightgrey;
+  padding: 0.5rem;
+}
+
+.post-feed .post-date {
+  color: grey;
+  float: right;
+  font-size: 0.8rem;
+}
+
+.post-feed .post-author {
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 768px) {
-  .app {
-    display: flex;
-  }
-  .sidenav,
-  .feed {
-    flex: left;
-  }
   .sidenav {
+    display: block;
+    position: relative;
+    background-color: #fbfcff;
     width: 25%;
+    text-align: left;
+    padding: 1rem 4rem;
+  }
+  .sidenav svg {
+    display: none;
+  }
+  .sidenav h1 {
+    font-size: 40px;
+    color: #05204a;
+    text-align: left;
+  }
+  .sidenav ul li a {
+    color: #05204a;
+  }
+  .sidenav ul.navClosed {
+    display: block;
   }
   .feed {
     width: 50%;
   }
-  .sidenav ul.navClosed {
+  .home-screen {
+    margin: 0;
+  }
+  .home-screen h2 {
     display: block;
   }
 }
