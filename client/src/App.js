@@ -22,7 +22,10 @@ function App({ isLoading, loadUser }) {
     <div className="app">
       <Router>
         <Switch>
-          <PrivateRoute exact path="/">
+          <Route path="/login">
+            <LoginScreen />
+          </Route>
+          <PrivateRoute path="/">
             <Router>
               <Switch>
                 <Route exact path="/">
@@ -36,9 +39,6 @@ function App({ isLoading, loadUser }) {
               </Switch>
             </Router>
           </PrivateRoute>
-          <Route path="/login">
-            <LoginScreen />
-          </Route>
         </Switch>
       </Router>
     </div>
