@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getNotifications } from "../../actions/notificationActions";
-import { FiThumbsUp } from "react-icons/fi";
+import { AiFillLike } from "react-icons/ai";
 import moment from "moment";
 
 const NotificationScreen = ({ notifications, getNotifications, isLoading }) => {
@@ -20,7 +20,7 @@ const NotificationScreen = ({ notifications, getNotifications, isLoading }) => {
             <div key={_id} className="notification">
               <div className="notification-icon">
                 {action === "like" ? (
-                  <FiThumbsUp size={25} color="green" />
+                  <AiFillLike color="green" size={25} />
                 ) : null}
               </div>
 

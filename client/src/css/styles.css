@@ -1,15 +1,3 @@
-.login-screen form button, .create-post button, .create-comment button {
-  background-color: #05204a;
-  color: #fbfcff;
-  border: solid 1px #05204a;
-  text-transform: uppercase;
-  padding: 8px 20px;
-}
-
-.login-screen form button:hover, .create-post button:hover, .create-comment button:hover {
-  background-color: #0b49aa;
-}
-
 /* latin */
 @font-face {
   font-family: "Playfair Display";
@@ -60,334 +48,130 @@ body {
 }
 
 .app {
-  display: flex;
-  justify-content: center;
-}
-
-h1 {
-  font-family: "Playfair Display";
-  font-weight: 800;
-  font-size: 48px;
-  text-align: center;
-  margin-top: 0;
-  color: #05204a;
-}
-
-a {
-  text-decoration: none;
-}
-
-.loading-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.login-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 80%;
-}
-
-.login-screen form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.login-screen form input,
-.login-screen form button {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-family: "Abel", sans-serif;
-  width: 100%;
-  text-align: center;
-  max-width: 75%;
-  padding: 0.5rem;
-  box-sizing: border-box;
-}
-
-.login-screen form input {
-  background-color: #fbfcff;
-  border: solid 1px #05204a;
-}
-
-.login-screen form input:focus {
-  border-width: 2px;
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
 }
 
 .sidenav {
-  display: block;
-  position: fixed;
+  border-right: 1px solid lightgrey;
   background-color: #05204a;
-  width: 100%;
+  padding: 1rem;
 }
 
-.sidenav .header {
-  display: flex;
-  color: #fbfcff;
-  align-items: center;
-  padding: 1rem 0 1rem 1rem;
-}
-
-.sidenav .header svg {
-  font-size: 1.5rem;
-  margin-right: 1rem;
-}
-
-.sidenav h1 {
+.sidenav ul {
+  padding: 0;
   margin: 0;
-  text-align: left;
-  font-size: 1.5rem;
+  list-style-type: none;
+}
+
+.sidenav ul li {
+  padding-top: 1rem;
+}
+
+.sidenav ul li a {
+  text-decoration: none;
+  font-family: "Roboto Condensed";
+  text-transform: uppercase;
   color: #fbfcff;
+  font-size: 1.5rem;
 }
 
 .sidenav ul.navClosed {
   display: none;
 }
 
-.sidenav ul {
-  display: block;
-  list-style: none;
-  padding: 0 0 0 1rem;
-  margin: 0;
-}
-
-.sidenav ul li {
-  border-top: 1px solid #fbfcff;
-}
-
-.sidenav ul li a {
-  color: #05204a;
-  font-family: "Abel", sans-serif;
-  text-transform: uppercase;
-  font-size: 30px;
-  line-height: 1.6;
+.sidenav svg {
+  font-size: 1.5rem;
   color: #fbfcff;
 }
 
-.sidenav ul li a:hover {
-  color: #fbfcff;
-  background-color: #05204a;
+.post-actions {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
-.notification-screen {
-  width: 100%;
-  margin-top: 32px;
-  padding-top: 2rem;
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
+.post-like-button,
+.comment-like-button {
   display: flex;
-  flex-direction: column;
+  background: none;
+  border: none;
+  align-items: center;
 }
 
-.notification-screen h2 {
-  font-family: "Roboto Condensed";
-  display: none;
-  margin-bottom: 0;
-}
-
-.notification-screen .header {
-  padding-left: 0.5rem;
-  border-bottom: 1px solid lightgrey;
-}
-
+.notification-screen,
 .home-screen {
-  margin-top: 32px;
-  padding-top: 2rem;
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-  display: flex;
-  flex-direction: column;
-}
-
-.home-screen h2 {
-  font-family: "Roboto Condensed";
-  display: none;
-  margin-bottom: 0;
-}
-
-.home-screen .header {
-  padding-left: 0.5rem;
-  border-bottom: 1px solid lightgrey;
-}
-
-.notification-feed {
-  display: flex;
-  flex-direction: column;
   width: 100%;
+  padding: 1rem;
+}
+
+.login-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post {
   border-top: 1px solid lightgrey;
+  padding: 1rem 0;
 }
 
-.notification-feed .notification {
-  border-bottom: 1px solid lightgrey;
-  padding: 0.5rem;
-  width: 100%;
+.post .post-body {
+  overflow-wrap: break-word;
 }
 
-.notification-feed .notification-date {
-  color: grey;
+.post .post-date {
   float: right;
-  font-size: 0.8rem;
+  color: grey;
 }
 
-.notification-feed .notification-author {
+.post .post-author {
   font-weight: bold;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.notification .notification-date {
+  margin-left: auto;
+  color: grey;
 }
 
 .create-post {
   display: flex;
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
 .create-post input {
   width: 100%;
   background: none;
   border: none;
-  font-size: 1.5rem;
-  padding: 2rem 0.5rem;
+  font-size: 1.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .create-post button {
-  font-weight: bold;
-  font-size: 1rem;
   float: right;
-  margin-right: 1rem;
-  padding: 0.5rem 1rem;
-}
-
-.post-feed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-top: 1px solid lightgrey;
-}
-
-.post-feed .post {
-  border-bottom: 1px solid lightgrey;
-  padding: 0.5rem;
-}
-
-.post-feed .post-date {
-  color: grey;
-  float: right;
-  font-size: 0.8rem;
-}
-
-.post-feed .post-author {
-  font-weight: bold;
-}
-
-.comments {
-  padding-left: 1rem;
-}
-
-.comments-title {
-  color: grey;
-}
-
-.create-comment {
-  display: flex;
-  width: 100%;
-}
-
-.create-comment input {
   background: none;
   border: none;
-}
-
-.create-comment button {
-  margin-right: 1rem;
-  padding: 0.25rem 0.5rem;
-}
-
-.comment-feed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 0.9rem;
-}
-
-.comment-feed .comment-date {
-  color: grey;
-  float: right;
-  font-size: 0.8rem;
-}
-
-.comment-feed .comment-author {
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
-@media only screen and (min-width: 1280px) {
-  body {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
+@media only screen and (min-width: 1000px) {
+  #root {
+    display: flex;
+    justify-content: center;
   }
-  .sidenav {
-    display: block;
-    position: relative;
-    background-color: #fbfcff;
-    width: 25%;
-    text-align: left;
-    padding: 1rem 4rem;
+  .app {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
   }
-  .sidenav svg {
-    display: none;
-  }
-  .sidenav h1 {
-    font-size: 40px;
-    color: #05204a;
-    text-align: left;
-  }
-  .sidenav ul li a {
-    color: #05204a;
-  }
-  .sidenav ul.navClosed {
-    display: block;
-  }
-  .feed {
-    width: 50%;
-  }
-  .home-screen {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    padding-top: 1rem;
-  }
-  .home-screen .create-post form {
-    width: 100%;
-  }
-  .home-screen .create-post button {
-    margin-right: 0;
-  }
-  .home-screen h2 {
-    display: block;
-  }
-  .notification-screen {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    padding-top: 1rem;
-  }
-  .notification-screen h2 {
-    display: block;
-  }
-}
-
-.error {
-  color: red;
-}
-
-.faded {
-  color: gray;
-  text-align: center;
 }

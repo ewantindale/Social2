@@ -62,34 +62,32 @@ const LoginScreen = ({ isAuthenticated, login, error, clearErrors }) => {
   };
 
   return (
-    <div className="login-screen">
-      <form>
-        <h1>Welcome to Social</h1>
-        <input
-          ref={usernameInput}
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Username"
-          onChange={handleChangeUsername}
-        />
-        <input
-          ref={passwordInput}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          onChange={handleChangePassword}
-        />
+    <form className="login-screen">
+      <h1>Welcome to Social</h1>
+      <input
+        ref={usernameInput}
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Username"
+        onChange={handleChangeUsername}
+      />
+      <input
+        ref={passwordInput}
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        onChange={handleChangePassword}
+      />
 
-        {/* <input type="submit" value="Log In" /> */}
-        <button onClick={handleSubmit}>Log In</button>
-        <span className="error">{errorMessage ? errorMessage : ""}</span>
-        <span className="faded">
-          If you don't already have an account, one will be created for you.
-        </span>
-      </form>
-    </div>
+      {/* <input type="submit" value="Log In" /> */}
+      <button onClick={handleSubmit}>Log In</button>
+      <span className="error">{errorMessage ? errorMessage : ""}</span>
+      <span className="faded">
+        If you don't already have an account, one will be created for you.
+      </span>
+    </form>
   );
 };
 

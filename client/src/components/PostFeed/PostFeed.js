@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { getPosts, likePost } from "../../actions/postActions";
 import CreateComment from "../CreateComment/CreateComment";
 import CommentFeed from "../CommentFeed/CommentFeed";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import moment from "moment";
 
 // TODO: Refactor this into separate components
 
-function PostFeed({ posts, getPosts, likePost }) {
+function PostFeed({ posts, getPosts, likePost, userId }) {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -20,12 +21,16 @@ function PostFeed({ posts, getPosts, likePost }) {
           <div className="post-author">{post.authorName}</div>
           <div className="post-body">{post.body}</div>
           <div className="post-actions">
-            <span>{post.likedBy ? post.likedBy.length : null}</span>
             <button
               onClick={() => likePost(post._id)}
               className="post-like-button"
             >
-              Like
+              {post.likedBy.includes(userId) ? (
+                <AiFillLike size={20} color="green" />
+              ) : (
+                <AiOutlineLike size={20} />
+              )}
+              <span>{post.likedBy ? post.likedBy.length : null}</span>
             </button>
           </div>
           <div className="comments">
@@ -40,6 +45,7 @@ function PostFeed({ posts, getPosts, likePost }) {
 
 const mapStateToProps = (state) => ({
   posts: state.post.posts,
+  userId: state.auth.user._id,
 });
 
 export default connect(mapStateToProps, { getPosts, likePost })(PostFeed);

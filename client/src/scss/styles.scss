@@ -66,335 +66,120 @@ body {
 }
 
 .app {
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+}
+
+.sidenav {
+  border-right: 1px solid lightgrey;
+  background-color: $primary-color;
+  padding: 1rem;
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      padding-top: 1rem;
+    }
+    li a {
+      text-decoration: none;
+      font-family: "Roboto Condensed";
+      text-transform: uppercase;
+      color: $light-color;
+      font-size: 1.5rem;
+    }
+  }
+  ul.navClosed {
+    display: none;
+  }
+  svg {
+    font-size: 1.5rem;
+    color: $light-color;
+  }
+}
+
+.post-actions {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.post-like-button,
+.comment-like-button {
   display: flex;
-  justify-content: center;
-}
-
-h1 {
-  font-family: "Playfair Display";
-  font-weight: 800;
-  font-size: 48px;
-  text-align: center;
-  margin-top: 0;
-  color: $primary-color;
-}
-
-a {
-  text-decoration: none;
-}
-
-.loading-screen {
-  display: flex;
-  justify-content: center;
+  background: none;
+  border: none;
   align-items: center;
-  position: absolute;
+}
+
+.notification-screen,
+.home-screen {
   width: 100%;
-  height: 100%;
+  padding: 1rem;
 }
 
 .login-screen {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 80%;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    input,
-    button {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-      font-family: "Abel", sans-serif;
-      width: 100%;
-      text-align: center;
-      max-width: 75%;
-      padding: 0.5rem;
-      box-sizing: border-box;
-    }
-
-    button {
-      @extend %button;
-    }
-
-    input {
-      background-color: $light-color;
-      border: solid 1px $primary-color;
-    }
-
-    input:focus {
-      border-width: 2px;
-    }
-  }
 }
 
-.sidenav {
-  display: block;
-  position: fixed;
-  background-color: $primary-color;
-  width: 100%;
-
-  .header {
-    display: flex;
-    color: $light-color;
-    align-items: center;
-
-    svg {
-      font-size: 1.5rem;
-      margin-right: 1rem;
-    }
-    padding: 1rem 0 1rem 1rem;
-  }
-  h1 {
-    margin: 0;
-    text-align: left;
-    font-size: 1.5rem;
-    color: $light-color;
-  }
-
-  ul.navClosed {
-    display: none;
-  }
-
-  ul {
-    display: block;
-    list-style: none;
-    padding: 0 0 0 1rem;
-    margin: 0;
-    li {
-      border-top: 1px solid $light-color;
-    }
-    li a {
-      color: $primary-color;
-      font-family: "Abel", sans-serif;
-      text-transform: uppercase;
-      font-size: 30px;
-      line-height: 1.6;
-      color: $light-color;
-    }
-
-    li a:hover {
-      color: $light-color;
-      background-color: $primary-color;
-    }
-  }
-}
-
-.notification-screen {
-  width: 100%;
-  margin-top: 32px;
-  padding-top: 2rem;
-  h2 {
-    font-family: "Roboto Condensed";
-    display: none;
-    margin-bottom: 0;
-  }
-  .header {
-    padding-left: 0.5rem;
-    border-bottom: 1px solid lightgrey;
-  }
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-  display: flex;
-  flex-direction: column;
-}
-
-.home-screen {
-  margin-top: 32px;
-  padding-top: 2rem;
-  h2 {
-    font-family: "Roboto Condensed";
-    display: none;
-    margin-bottom: 0;
-  }
-  .header {
-    padding-left: 0.5rem;
-    border-bottom: 1px solid lightgrey;
-  }
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-  display: flex;
-  flex-direction: column;
-}
-
-.notification-feed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.post {
   border-top: 1px solid lightgrey;
-  .notification {
-    border-bottom: 1px solid lightgrey;
-    padding: 0.5rem;
-    width: 100%;
-  }
-  .notification-date {
-    color: grey;
-    float: right;
-    font-size: 0.8rem;
-  }
-  .notification-author {
-    font-weight: bold;
-  }
-}
-
-.create-post {
-  display: flex;
-  width: 100%;
-  margin-bottom: 1rem;
-
-  input {
-    width: 100%;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    padding: 2rem 0.5rem;
-  }
-
-  button {
-    @extend %button;
-    font-weight: bold;
-    font-size: 1rem;
-    float: right;
-    margin-right: 1rem;
-    padding: 0.5rem 1rem;
-  }
-}
-
-.post-feed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-top: 1px solid lightgrey;
-  .post {
-    border-bottom: 1px solid lightgrey;
-    padding: 0.5rem;
+  padding: 1rem 0;
+  .post-body {
+    overflow-wrap: break-word;
   }
   .post-date {
-    color: grey;
     float: right;
-    font-size: 0.8rem;
+    color: grey;
   }
   .post-author {
     font-weight: bold;
   }
 }
 
-.comments {
-  padding-left: 1rem;
-}
-.comments-title {
-  color: grey;
+.notification {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  .notification-date {
+    margin-left: auto;
+    color: grey;
+  }
 }
 
-.create-comment {
+.create-post {
   display: flex;
-  width: 100%;
+  //border: 1px solid lightgrey;
   input {
+    width: 100%;
     background: none;
     border: none;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   button {
-    @extend %button;
-    margin-right: 1rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
-
-.comment-feed {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 0.9rem;
-  .comment-date {
-    color: grey;
     float: right;
-    font-size: 0.8rem;
-  }
-  .comment-author {
+    background: none;
+    border: none;
+    font-family: "Roboto Condensed", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2rem;
     font-weight: bold;
   }
 }
 
-@media only screen and (min-width: 1280px) {
-  body {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
+@media only screen and (min-width: 1000px) {
+  #root {
+    display: flex;
+    justify-content: center;
   }
-  .sidenav {
-    display: block;
-    position: relative;
-    background-color: $light-color;
-    width: 25%;
-    text-align: left;
-    padding: 1rem 4rem;
-
-    svg {
-      display: none;
-    }
-
-    h1 {
-      font-size: 40px;
-      color: $primary-color;
-      text-align: left;
-    }
-
-    ul {
-      li {
-        a {
-          color: $primary-color;
-        }
-      }
-    }
-
-    ul.navClosed {
-      display: block;
-    }
+  .app {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
   }
-
-  .feed {
-    width: 50%;
-  }
-
-  .home-screen {
-    width: 100%;
-    .create-post {
-      form {
-        width: 100%;
-      }
-      button {
-        margin-right: 0;
-      }
-    }
-    margin: 0;
-    padding: 0;
-    padding-top: 1rem;
-    h2 {
-      display: block;
-    }
-  }
-
-  .notification-screen {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    padding-top: 1rem;
-    h2 {
-      display: block;
-    }
-  }
-}
-
-.error {
-  color: red;
-}
-
-.faded {
-  color: lighten(black, 50);
-  text-align: center;
 }

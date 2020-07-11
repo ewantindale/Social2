@@ -11,7 +11,6 @@ const SideNav = ({ logout }) => {
     <div className="sidenav">
       <Link onClick={() => setOpen(!open)} className="header">
         <FiMenu />
-        <h1>Social</h1>
       </Link>
       <ul className={open ? "navOpen" : "navClosed"}>
         <li>

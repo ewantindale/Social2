@@ -23,19 +23,19 @@ function CreateComment({ user, addComment, postId }) {
   };
 
   return (
-    <div className="create-comment">
-      <form>
-        <input
-          type="text"
-          name="post"
-          id="post"
-          placeholder="Add a comment..."
-          ref={commentTextInput}
-          onChange={handleCommentInputChange}
-        />
-        <button onClick={handleCommentSubmit}>Post</button>
-      </form>
-    </div>
+    <form className="create-comment">
+      <input
+        type="text"
+        name="post"
+        id="post"
+        placeholder="Add a comment..."
+        ref={commentTextInput}
+        onChange={handleCommentInputChange}
+      />
+      <button onClick={handleCommentSubmit} disabled={!commentText}>
+        Post
+      </button>
+    </form>
   );
 }
 

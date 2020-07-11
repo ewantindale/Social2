@@ -23,19 +23,17 @@ function CreatePost({ user, addPost }) {
   };
 
   return (
-    <div className="create-post">
-      <form>
-        <input
-          type="text"
-          name="post"
-          id="post"
-          placeholder="What's on your mind?"
-          ref={postTextInput}
-          onChange={handlePostInputChange}
-        />
-        <button onClick={handlePostSubmit}>Post</button>
-      </form>
-    </div>
+    <form className="create-post">
+      <input
+        type="text"
+        name="post"
+        id="post"
+        placeholder="What's on your mind?"
+        ref={postTextInput}
+        onChange={handlePostInputChange}
+      />
+      <button onClick={handlePostSubmit}>Post</button>
+    </form>
   );
 }
 
