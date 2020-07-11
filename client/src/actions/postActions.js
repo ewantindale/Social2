@@ -1,5 +1,12 @@
 import axios from "axios";
-import { GET_POSTS, ADD_POST, POSTS_LOADING, LIKE_POST } from "./types";
+import {
+  GET_POSTS,
+  ADD_POST,
+  POSTS_LOADING,
+  LIKE_POST,
+  ADD_COMMENT,
+  LIKE_COMMENT,
+} from "./types";
 import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
 
@@ -45,8 +52,40 @@ export const likePost = (id) => (dispatch, getState) => {
       dispatch({
         type: LIKE_POST,
         payload: {
-          postId: id,
-          userId: getState().auth.user.id,
+          postId: res.data.postId,
+          userId: res.data.userId,
+        },
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addComment = (id, comment) => (dispatch, getState) => {
+  axios
+    .post(`/api/posts/${id}/comment`, comment, tokenConfig(getState))
+    .then((res) =>
+      dispatch({
+        type: ADD_COMMENT,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const likeComment = (postId, commentId) => (dispatch, getState) => {
+  axios
+    .post(`/api/posts/${postId}/${commentId}/like`, null, tokenConfig(getState))
+    .then((res) =>
+      dispatch({
+        type: LIKE_COMMENT,
+        payload: {
+          postId,
+          commentId,
+          userId: getState().auth.user._id,
         },
       })
     )

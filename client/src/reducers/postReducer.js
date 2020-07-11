@@ -5,6 +5,8 @@ import {
   POSTS_LOADING,
   LOGOUT_SUCCESS,
   LIKE_POST,
+  ADD_COMMENT,
+  LIKE_COMMENT,
 } from "../actions/types";
 
 const initialState = {
@@ -43,6 +45,50 @@ export default function (state = initialState, action) {
                         (likeUserId) => likeUserId !== action.payload.userId
                       )
                     : [...post.likedBy, action.payload.userId],
+                }
+              : post
+          ),
+        ],
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        posts: [
+          ...state.posts.map((post) =>
+            post._id === action.payload.id
+              ? {
+                  ...post,
+                  comments: [action.payload.comment, ...post.comments],
+                }
+              : post
+          ),
+        ],
+      };
+    case LIKE_COMMENT:
+      return {
+        ...state,
+        posts: [
+          ...state.posts.map((post) =>
+            post._id === action.payload.postId
+              ? {
+                  ...post,
+                  comments: [
+                    ...post.comments.map((comment) =>
+                      comment._id === action.payload.commentId
+                        ? {
+                            ...comment,
+                            likedBy: comment.likedBy.includes(
+                              action.payload.userId
+                            )
+                              ? comment.likedBy.filter(
+                                  (likeUserId) =>
+                                    likeUserId !== action.payload.userId
+                                )
+                              : [...comment.likedBy, action.payload.userId],
+                          }
+                        : comment
+                    ),
+                  ],
                 }
               : post
           ),

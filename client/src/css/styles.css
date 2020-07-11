@@ -1,4 +1,4 @@
-.login-screen form button, .create-post button {
+.login-screen form button, .create-post button, .create-comment button {
   background-color: #05204a;
   color: #fbfcff;
   border: solid 1px #05204a;
@@ -6,7 +6,7 @@
   padding: 8px 20px;
 }
 
-.login-screen form button:hover, .create-post button:hover {
+.login-screen form button:hover, .create-post button:hover, .create-comment button:hover {
   background-color: #0b49aa;
 }
 
@@ -38,6 +38,15 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -47,6 +56,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fbfcff;
+  font-family: "Roboto", sans-serif;
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .app {
@@ -168,10 +181,31 @@ a {
   background-color: #05204a;
 }
 
+.notification-screen {
+  margin-top: 32px;
+  padding-top: 2rem;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-screen h2 {
+  font-family: "Roboto Condensed";
+  display: none;
+  margin-bottom: 0;
+}
+
+.notification-screen .header {
+  padding-left: 0.5rem;
+  border-bottom: 1px solid lightgrey;
+}
+
 .home-screen {
   margin-top: 32px;
   padding-top: 2rem;
   border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
   display: flex;
   flex-direction: column;
 }
@@ -185,6 +219,28 @@ a {
 .home-screen .header {
   padding-left: 0.5rem;
   border-bottom: 1px solid lightgrey;
+}
+
+.notification-feed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid lightgrey;
+}
+
+.notification-feed .notification {
+  border-bottom: 1px solid lightgrey;
+  padding: 0.5rem;
+}
+
+.notification-feed .notification-date {
+  color: grey;
+  float: right;
+  font-size: 0.8rem;
+}
+
+.notification-feed .notification-author {
+  font-weight: bold;
 }
 
 .create-post {
@@ -206,6 +262,7 @@ a {
   font-size: 1rem;
   float: right;
   margin-right: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .post-feed {
@@ -213,7 +270,6 @@ a {
   flex-direction: column;
   width: 100%;
   border-top: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
 }
 
 .post-feed .post {
@@ -231,7 +287,47 @@ a {
   font-weight: bold;
 }
 
-@media only screen and (min-width: 1000px) {
+.comments {
+  padding-left: 1rem;
+}
+
+.comments-title {
+  color: grey;
+}
+
+.create-comment {
+  display: flex;
+  width: 100%;
+}
+
+.create-comment input {
+  background: none;
+  border: none;
+}
+
+.create-comment button {
+  margin-right: 1rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.comment-feed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.comment-feed .comment-date {
+  color: grey;
+  float: right;
+  font-size: 0.8rem;
+}
+
+.comment-feed .comment-author {
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 1280px) {
   .sidenav {
     display: block;
     position: relative;
@@ -258,6 +354,7 @@ a {
     width: 50%;
   }
   .home-screen {
+    width: 100%;
     margin: 0;
     padding: 0;
     padding-top: 1rem;
@@ -269,6 +366,15 @@ a {
     margin-right: 0;
   }
   .home-screen h2 {
+    display: block;
+  }
+  .notification-screen {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+  }
+  .notification-screen h2 {
     display: block;
   }
 }

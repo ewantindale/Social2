@@ -11,3 +11,7 @@ export const GET_POSTS = "GET_POSTS";
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const POSTS_LOADING = "POSTS_LOADING";
+export const ADD_COMMENT = "ADD_COMMENT";
+export const LIKE_COMMENT = "LIKE_COMMENT";
+export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
+export const NOTIFICATIONS_LOADING = "NOTIFICATIONS_LOADING";

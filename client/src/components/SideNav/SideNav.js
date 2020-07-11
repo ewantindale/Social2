@@ -18,13 +18,10 @@ const SideNav = ({ logout }) => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/">Notifications</Link>
+          <Link to="/notifications">Notifications</Link>
         </li>
         <li>
           <Link to="/">Messages</Link>
-        </li>
-        <li>
-          <Link to="/">Profile</Link>
         </li>
         <li>
           <Link onClick={logout}>Log Out</Link>

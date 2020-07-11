@@ -4,6 +4,7 @@ import { loadUser } from "./actions/authActions";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoadingScreen from "./screens/LoadingScreen/LoadingScreen";
+import NotificationScreen from "./screens/NotificationScreen/NotificationScreen";
 import SideNav from "./components/SideNav/SideNav";
 import PrivateRoute from "./PrivateRoute";
 import { connect } from "react-redux";
@@ -22,11 +23,15 @@ function App({ isLoading, loadUser }) {
       <Router>
         <Switch>
           <PrivateRoute exact path="/">
-            <SideNav />
             <Router>
               <Switch>
-                <Route path="/">
+                <Route exact path="/">
+                  <SideNav />
                   <HomeScreen />
+                </Route>
+                <Route path="/notifications">
+                  <SideNav />
+                  <NotificationScreen />
                 </Route>
               </Switch>
             </Router>

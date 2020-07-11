@@ -42,6 +42,7 @@ router.post("/", (req, res) => {
                   user: {
                     id: user.id,
                     name: user.name,
+                    notifications: user.notifications,
                   },
                 });
               }
@@ -66,6 +67,7 @@ router.post("/", (req, res) => {
               user: {
                 id: user.id,
                 name: user.name,
+                notifications: user.notifications,
               },
             });
           }
