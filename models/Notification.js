@@ -14,6 +14,10 @@ const NotificationSchema = new Schema({
     type: String,
     required: true,
   },
+  postId: {
+    type: String,
+    required: true,
+  },
   action: {
     type: String,
     required: true,

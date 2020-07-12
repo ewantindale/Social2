@@ -19,7 +19,7 @@ router.get("/", auth, (req, res) => {
 // Create a new post
 router.post("/", auth, (req, res) => {
   const newPost = new Post({
-    authorId: req.user.id,
+    authorId: req.user._id,
     authorName: req.user.name,
     body: req.body.body,
     likedBy: [],
@@ -40,23 +40,24 @@ router.post("/:id/like", auth, (req, res) => {
       const updatedPost = post;
       // Check if the user has already liked the post. If so, remove the like.
       // Otherwise add the like and create a notification for the post's author
-      if (updatedPost.likedBy.includes(req.user.id)) {
+      if (updatedPost.likedBy.includes(req.user._id)) {
         updatedPost.likedBy = updatedPost.likedBy.filter(
-          (e) => e !== req.user.id
+          (e) => e !== req.user._id
         );
       } else {
-        updatedPost.likedBy.push(req.user.id);
+        updatedPost.likedBy.push(req.user._id);
         const newNotification = new Notification({
           userId: post.authorId,
-          authorId: req.user.id,
+          authorId: req.user._id,
           authorName: req.user.name,
-          action: "like",
+          postId: post._id,
+          action: "likePost",
         });
         newNotification.save();
       }
       updatedPost
         .save()
-        .then(() => res.json({ postId: req.params.id, userId: req.user.id }));
+        .then(() => res.json({ postId: req.params.id, userId: req.user._id }));
     })
     .catch((error) => res.status(500).json({ error }));
 });
@@ -69,12 +70,20 @@ router.post("/:id/comment", auth, (req, res) => {
     .then((post) => {
       const updatedPost = post;
       const comment = {
-        authorId: req.user.id,
+        authorId: req.user._id,
         authorName: req.user.name,
         body: req.body.body,
         likedBy: [],
       };
       updatedPost.comments.unshift(comment);
+      const newNotification = new Notification({
+        userId: post.authorId,
+        authorId: req.user._id,
+        authorName: req.user.name,
+        postId: post._id,
+        action: "comment",
+      });
+      newNotification.save();
       updatedPost
         .save()
         .then((post) =>
@@ -91,10 +100,18 @@ router.post("/:postId/:commentId/like", auth, (req, res) => {
   Post.findById(req.params.postId)
     .then((post) => {
       const comment = post.comments.id(req.params.commentId);
-      if (comment.likedBy.includes(req.user.id)) {
-        comment.likedBy = comment.likedBy.filter((e) => e !== req.user.id);
+      if (comment.likedBy.includes(req.user._id)) {
+        comment.likedBy = comment.likedBy.filter((e) => e !== req.user._id);
       } else {
-        comment.likedBy.push(req.user.id);
+        comment.likedBy.push(req.user._id);
+        const newNotification = new Notification({
+          userId: comment.authorId,
+          authorId: req.user._id,
+          authorName: req.user.name,
+          postId: post._id,
+          action: "likeComment",
+        });
+        newNotification.save();
       }
       post.save().then((post) => res.json(post));
     })

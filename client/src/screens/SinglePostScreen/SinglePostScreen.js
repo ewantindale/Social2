@@ -1,21 +1,29 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getPosts, likePost } from "../../actions/postActions";
-import CreateComment from "../CreateComment/CreateComment";
-import CommentFeed from "../CommentFeed/CommentFeed";
+import CreateComment from "../../components/CreateComment/CreateComment";
+import CommentFeed from "../../components/CommentFeed/CommentFeed";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function PostFeed({ posts, getPosts, likePost, userId }) {
+function SinglePostScreen({ posts, getPosts, likePost, userId }) {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
+  const { id } = useParams();
+  console.log(id);
+  const post = posts.find((p) => p._id === id);
+
+  if (!post) {
+    return <div className="single-post-screen">Loading post...</div>;
+  }
+
   return (
-    <div className="post-feed">
-      {posts.map((post) => (
-        <div key={post._id} className="post">
+    <div className="single-post-screen">
+      {
+        <div className="post">
           <div className="post-date">{moment(post.date).fromNow()}</div>
           <div className="post-author">{post.authorName}</div>
           <div className="post-body">{post.body}</div>
@@ -37,7 +45,7 @@ function PostFeed({ posts, getPosts, likePost, userId }) {
             <CommentFeed postId={post._id} comments={post.comments} />
           </div>
         </div>
-      ))}
+      }
     </div>
   );
 }
@@ -47,4 +55,6 @@ const mapStateToProps = (state) => ({
   userId: state.auth.user._id,
 });
 
-export default connect(mapStateToProps, { getPosts, likePost })(PostFeed);
+export default connect(mapStateToProps, { getPosts, likePost })(
+  SinglePostScreen
+);

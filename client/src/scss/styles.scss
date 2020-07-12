@@ -57,6 +57,16 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
+a {
+  color: $primary-color;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -87,6 +97,23 @@ body {
       text-transform: uppercase;
       color: $light-color;
       font-size: 1.5rem;
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+    li a:hover {
+      // do something here
+    }
+    .unread-notifications {
+      font-size: 1rem;
+      background-color: red;
+      display: flex;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 1.5rem;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.5rem;
     }
   }
   ul.navClosed {
@@ -95,6 +122,7 @@ body {
   svg {
     font-size: 1.5rem;
     color: $light-color;
+    margin-right: 1rem;
   }
 }
 
@@ -109,10 +137,25 @@ body {
   background: none;
   border: none;
   align-items: center;
+  padding: 0;
+}
+.comment-feed {
+  .comment {
+    border-left: 1px solid lightgrey;
+    padding: 1rem 0 0 1rem;
+    .comment-author {
+      font-weight: bold;
+    }
+    .comment-date {
+      float: right;
+      color: grey;
+    }
+  }
 }
 
 .notification-screen,
-.home-screen {
+.home-screen,
+.single-post-screen {
   width: 100%;
   padding: 1rem;
 }
@@ -121,6 +164,39 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  h1 {
+    font-family: "Playfair Display";
+    color: $primary-color;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  input {
+    background: none;
+    border: 1px solid $primary-color;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  button {
+    background-color: $primary-color;
+    color: $light-color;
+    border: none;
+    font-family: "Roboto Condensed", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .faded {
+    color: grey;
+  }
 }
 
 .post {
@@ -144,6 +220,10 @@ body {
   border-bottom: 1px solid lightgrey;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+
+  .notification-icon {
+    margin-right: 1rem;
+  }
   .notification-date {
     margin-left: auto;
     color: grey;
@@ -154,7 +234,7 @@ body {
   display: flex;
   //border: 1px solid lightgrey;
   input {
-    width: 100%;
+    width: 75%;
     background: none;
     border: none;
     font-size: 1.2rem;
@@ -162,7 +242,7 @@ body {
     padding-bottom: 1rem;
   }
   button {
-    float: right;
+    width: 25%;
     background: none;
     border: none;
     font-family: "Roboto Condensed", sans-serif;
@@ -181,5 +261,13 @@ body {
     display: flex;
     justify-content: center;
     width: 1000px;
+  }
+  .sidenav {
+    .toggleNav {
+      display: none;
+    }
+    ul.navClosed {
+      display: block;
+    }
   }
 }

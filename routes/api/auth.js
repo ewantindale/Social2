@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
           newUser.password = hash;
           newUser.save().then((user) => {
             jwt.sign(
-              { id: user.id, name: user.name },
+              { _id: user._id, name: user.name },
               process.env.jwtSecret,
               { expiresIn: 3600 },
               (err, token) => {
@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
                 return res.status(201).json({
                   token,
                   user: {
-                    id: user.id,
+                    _id: user._id,
                     name: user.name,
                     notifications: user.notifications,
                   },
@@ -57,7 +57,7 @@ router.post("/", (req, res) => {
           return res.status(400).json({ msg: "Invalid credentials" });
 
         jwt.sign(
-          { id: user.id, name: user.name },
+          { _id: user._id, name: user.name },
           process.env.jwtSecret,
           { expiresIn: 3600 },
           (err, token) => {
@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
             return res.status(200).json({
               token,
               user: {
-                id: user.id,
+                _id: user._id,
                 name: user.name,
                 notifications: user.notifications,
               },
@@ -81,9 +81,13 @@ router.post("/", (req, res) => {
 // Private
 // Return the user's data
 router.get("/user", auth, (req, res) => {
-  User.findById(req.user.id)
+  User.findById(req.user._id)
     .select("-password")
-    .then((user) => res.json(user));
+    .then((user) => {
+      if (!user) return res.status(500).json({ msg: "User does not exist" });
+      res.json(user);
+    })
+    .catch((error) => res.status(500).json({ error }));
 });
 
 module.exports = router;

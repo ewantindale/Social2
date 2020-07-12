@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getNotifications } from "../../actions/notificationActions";
-import { AiFillLike } from "react-icons/ai";
+import { AiFillLike, AiOutlineComment } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 const NotificationScreen = ({ notifications, getNotifications, isLoading }) => {
@@ -16,22 +17,49 @@ const NotificationScreen = ({ notifications, getNotifications, isLoading }) => {
       <div className="header">
         <h2>Notifications</h2>
         <div className="notification-feed">
-          {notifications.map(({ date, _id, authorId, authorName, action }) => (
-            <div key={_id} className="notification">
-              <div className="notification-icon">
-                {action === "like" ? (
-                  <AiFillLike color="green" size={25} />
-                ) : null}
-              </div>
+          {notifications.map(
+            ({ date, _id, authorId, authorName, postId, action }) => (
+              <div key={_id} className="notification">
+                {action === "likePost" ? (
+                  <>
+                    <div className="notification-icon">
+                      <AiFillLike color="green" size={25} />
+                    </div>
+                    <div className="notification-body">
+                      {authorName} liked your{" "}
+                      <Link to={`/posts/${postId}`}>post</Link>
+                    </div>
+                  </>
+                ) : action === "likeComment" ? (
+                  <>
+                    <div className="notification-icon">
+                      <AiFillLike color="green" size={25} />
+                    </div>
+                    <div className="notification-body">
+                      {authorName} liked your{" "}
+                      <Link to={`/posts/${postId}`}>comment</Link>
+                    </div>
+                  </>
+                ) : action === "comment" ? (
+                  <>
+                    <div className="notification-icon">
+                      <AiOutlineComment color="blue" size={25} />
+                    </div>
+                    <div className="notification-body">
+                      {authorName} commented on your{" "}
+                      <Link to={`/posts/${postId}`}>post</Link>
+                    </div>
+                  </>
+                ) : (
+                  <span>ERROR: Invalid notification type.</span>
+                )}
 
-              <div className="notification-body">
-                {action === "like"
-                  ? authorName + " liked your post" // TODO: Link to relevant user and post once those screens are done
-                  : "error: invalid action: " + action}
+                <div className="notification-date">
+                  {moment(date).fromNow()}
+                </div>
               </div>
-              <div className="notification-date">{moment(date).fromNow()}</div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </div>
