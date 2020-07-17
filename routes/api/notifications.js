@@ -13,4 +13,20 @@ router.get("/", auth, (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 });
 
+// POST /api/notifications/read
+// PRIVATE
+// Marks all the users notifications as read
+
+router.post("/read", auth, (req, res) => {
+  Notification.find({ userId: req.user._id })
+    .then((notifications) => {
+      notifications.forEach((n) => {
+        n.read = true;
+        n.save();
+      });
+    })
+    .then((notifications) => res.json({ success: true }))
+    .catch((error) => res.status(500).json({ error }));
+});
+
 module.exports = router;

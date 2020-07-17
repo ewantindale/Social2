@@ -89,7 +89,7 @@ body {
     margin: 0;
     list-style-type: none;
     li {
-      padding-top: 1rem;
+      margin-top: 1rem;
     }
     li a {
       text-decoration: none;
@@ -101,12 +101,19 @@ body {
       width: 100%;
       align-items: center;
     }
-    li a:hover {
-      // do something here
+    li:hover {
+      background-color: $light-color;
+      a {
+        color: $primary-color;
+      }
+      a svg {
+        color: $primary-color;
+      }
     }
     .unread-notifications {
-      font-size: 1rem;
+      font-size: 0.9rem;
       background-color: red;
+      border: 1px solid white;
       display: flex;
       width: 1.5rem;
       height: 1.5rem;
@@ -114,6 +121,8 @@ body {
       align-items: center;
       justify-content: center;
       margin-left: 0.5rem;
+      font-family: "Roboto Condensed";
+      font-weight: bold;
     }
   }
   ul.navClosed {
@@ -129,6 +138,9 @@ body {
 .post-actions {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.post-feed {
 }
 
 .post-like-button,
@@ -155,15 +167,87 @@ body {
 
 .notification-screen,
 .home-screen,
-.single-post-screen {
+.single-post-screen,
+.conversation-screen,
+.single-conversation-screen {
   width: 100%;
   padding: 1rem;
+  overflow: scroll;
+}
+
+.conversation-screen a {
+  text-decoration: none;
+}
+
+.conversation {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgrey;
+  .name {
+    font-weight: bold;
+    text-decoration: none !important;
+  }
+  .message {
+    color: grey;
+  }
+  .date {
+    float: right;
+    color: grey;
+  }
+}
+
+.conversation:hover {
+  background-color: #f5f5f5;
+}
+
+.single-conversation-screen {
+  .message-feed-wrapper {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 500px;
+  }
+  .message {
+    background-color: white;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 75%;
+    float: left;
+
+    .message-header {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .message-name {
+      font-weight: bold;
+    }
+
+    .message-body {
+      text-overflow: break-word;
+    }
+
+    .message-date {
+      float: right;
+      color: grey;
+    }
+
+    .message-actions {
+      float: right;
+    }
+  }
+}
+
+.message.sent {
+  background-color: $primary-color;
+  color: white;
+  float: right;
 }
 
 .login-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding-left: 1rem;
   padding-right: 1rem;
   h1 {
@@ -214,6 +298,28 @@ body {
   }
 }
 
+.notification-screen {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    button {
+      background: none;
+      border: 1px solid $primary-color;
+      font-family: "Roboto Condensed", sans-serif;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    button:hover {
+      background-color: $primary-color;
+      color: $light-color;
+    }
+  }
+}
+
 .notification {
   display: flex;
   align-items: center;
@@ -228,6 +334,10 @@ body {
     margin-left: auto;
     color: grey;
   }
+}
+
+.notification-unread {
+  font-weight: bold;
 }
 
 .create-post {

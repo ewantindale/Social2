@@ -4,8 +4,9 @@ import { getPosts, likePost } from "../../actions/postActions";
 import CreateComment from "../CreateComment/CreateComment";
 import CommentFeed from "../CommentFeed/CommentFeed";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import moment from "moment";
 import { Link } from "react-router-dom";
+import { AiOutlineMail } from "react-icons/ai";
+import moment from "moment";
 
 function PostFeed({ posts, getPosts, likePost, userId }) {
   useEffect(() => {
@@ -17,7 +18,12 @@ function PostFeed({ posts, getPosts, likePost, userId }) {
       {posts.map((post) => (
         <div key={post._id} className="post">
           <div className="post-date">{moment(post.date).fromNow()}</div>
-          <div className="post-author">{post.authorName}</div>
+          <div className="post-author">
+            {post.authorName}
+            <Link to={`/sendmessage/${post.authorId}`}>
+              <AiOutlineMail />
+            </Link>
+          </div>
           <div className="post-body">{post.body}</div>
           <div className="post-actions">
             <button
@@ -47,4 +53,7 @@ const mapStateToProps = (state) => ({
   userId: state.auth.user._id,
 });
 
-export default connect(mapStateToProps, { getPosts, likePost })(PostFeed);
+export default connect(mapStateToProps, {
+  getPosts,
+  likePost,
+})(PostFeed);

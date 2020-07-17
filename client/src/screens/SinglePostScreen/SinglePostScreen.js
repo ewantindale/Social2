@@ -13,7 +13,6 @@ function SinglePostScreen({ posts, getPosts, likePost, userId }) {
   }, [getPosts]);
 
   const { id } = useParams();
-  console.log(id);
   const post = posts.find((p) => p._id === id);
 
   if (!post) {

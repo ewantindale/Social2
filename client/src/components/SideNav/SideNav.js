@@ -17,9 +17,12 @@ const SideNav = ({ logout, notifications, getNotifications }) => {
     getNotifications();
   }, [getNotifications]);
 
+  const unreadNotifications = notifications.filter((n) => n.read === false)
+    .length;
+
   return (
     <div className="sidenav">
-      <Link onClick={() => setOpen(!open)} className="toggleNav">
+      <Link to="#" onClick={() => setOpen(!open)} className="toggleNav">
         <FiMenu />
       </Link>
       <ul className={open ? "navOpen" : "navClosed"}>
@@ -33,21 +36,23 @@ const SideNav = ({ logout, notifications, getNotifications }) => {
           <Link to="/notifications">
             <AiOutlineNotification />
             Notifications
-            {notifications ? (
+            {unreadNotifications ? (
               <span className="unread-notifications">
-                {notifications.filter((n) => n.read === false).length}
+                {unreadNotifications}
               </span>
             ) : null}
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/messages">
             <AiOutlineMail />
             Messages
           </Link>
         </li>
         <li>
-          <Link onClick={logout}>Log Out</Link>
+          <Link to="/" onClick={logout}>
+            Log Out
+          </Link>
         </li>
       </ul>
     </div>

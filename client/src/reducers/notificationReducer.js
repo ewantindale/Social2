@@ -1,4 +1,8 @@
-import { GET_NOTIFICATIONS, NOTIFICATIONS_LOADING } from "../actions/types";
+import {
+  GET_NOTIFICATIONS,
+  NOTIFICATIONS_LOADING,
+  MARK_NOTIFICATIONS_AS_READ,
+} from "../actions/types";
 
 const initialState = {
   notifications: [],
@@ -16,6 +20,14 @@ export default function (state = initialState, action) {
       return {
         notifications: action.payload,
         loading: false,
+      };
+    case MARK_NOTIFICATIONS_AS_READ:
+      return {
+        ...state,
+        notifications: state.notifications.map((n) => ({
+          ...n,
+          read: true,
+        })),
       };
     default:
       return state;
