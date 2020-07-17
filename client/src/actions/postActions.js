@@ -6,6 +6,7 @@ import {
   LIKE_POST,
   ADD_COMMENT,
   LIKE_COMMENT,
+  DELETE_POST,
 } from "./types";
 import { tokenConfig } from "./authActions";
 import { returnErrors } from "./errorActions";
@@ -87,6 +88,20 @@ export const likeComment = (postId, commentId) => (dispatch, getState) => {
           commentId,
           userId: getState().auth.user._id,
         },
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const deletePost = (id) => (dispatch, getState) => {
+  axios
+    .delete(`/api/posts/${id}`, tokenConfig(getState))
+    .then((res) =>
+      dispatch({
+        type: DELETE_POST,
+        payload: id,
       })
     )
     .catch((err) =>

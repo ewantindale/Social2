@@ -135,17 +135,24 @@ body {
 }
 
 .post-actions {
+  display: flex;
+  flex-direction: row;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
 .post-like-button,
-.comment-like-button {
+.comment-like-button,
+.post-delete-button {
   display: flex;
   background: none;
   border: none;
   align-items: center;
   padding: 0;
+}
+
+.post-delete-button {
+  margin-left: auto;
 }
 .comment-feed {
   .comment {

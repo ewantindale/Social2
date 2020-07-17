@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getPosts, likePost } from "../../actions/postActions";
+import { getPosts, likePost, deletePost } from "../../actions/postActions";
 import CreateComment from "../CreateComment/CreateComment";
 import CommentFeed from "../CommentFeed/CommentFeed";
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { AiOutlineLike, AiFillLike, AiOutlineDelete } from "react-icons/ai";
 import moment from "moment";
 
-function PostFeed({ posts, getPosts, likePost, userId }) {
+function PostFeed({ posts, getPosts, likePost, deletePost, userId }) {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -30,6 +30,14 @@ function PostFeed({ posts, getPosts, likePost, userId }) {
               )}
               <span>{post.likedBy ? post.likedBy.length : null}</span>
             </button>
+            {post.authorId === userId ? (
+              <button
+                onClick={() => deletePost(post._id)}
+                className="post-delete-button"
+              >
+                <AiOutlineDelete size={20} color="red" />
+              </button>
+            ) : null}
           </div>
           <div className="comments">
             <CreateComment postId={post._id} />
@@ -49,4 +57,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getPosts,
   likePost,
+  deletePost,
 })(PostFeed);

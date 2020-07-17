@@ -118,4 +118,19 @@ router.post("/:postId/:commentId/like", auth, (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 });
 
+//  DELETE /api/posts/:id
+//  Deletes a specific post
+router.delete("/:id", auth, (req, res) => {
+  Post.findById(req.params.id)
+    .then((post) => {
+      if (req.user._id !== post.authorId) {
+        return res
+          .status(401)
+          .json({ msg: "Incorrect user ID, authorization denied" });
+      }
+      post.remove().then(() => res.json({ success: true }));
+    })
+    .catch((error) => res.status(500).json({ error }));
+});
+
 module.exports = router;
