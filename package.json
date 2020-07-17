@@ -4,10 +4,12 @@
   "description": "Social media app built with MongoDB, Express, React/Redux and NodeJS",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
+    "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Ewan Tindale",
   "license": "ISC",
