@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { addPost } from "../../actions/postActions";
 import { connect } from "react-redux";
 
-function CreatePost({ user, addPost }) {
+function CreatePost({ addPost }) {
   const [postText, setPostText] = useState(null);
 
   const postTextInput = useRef(null);
@@ -32,6 +32,7 @@ function CreatePost({ user, addPost }) {
         ref={postTextInput}
         onChange={handlePostInputChange}
       />
+
       <button onClick={handlePostSubmit}>Post</button>
     </form>
   );

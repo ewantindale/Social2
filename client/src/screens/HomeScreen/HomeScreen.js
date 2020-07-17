@@ -7,8 +7,8 @@ const HomeScreen = () => {
     <div className="home-screen">
       <div className="header">
         <h2>Home</h2>
+        <CreatePost />
       </div>
-      <CreatePost />
       <PostFeed />
     </div>
   );

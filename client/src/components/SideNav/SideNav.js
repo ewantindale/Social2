@@ -3,11 +3,7 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
-import {
-  AiOutlineHome,
-  AiOutlineNotification,
-  AiOutlineMail,
-} from "react-icons/ai";
+import { AiOutlineHome, AiOutlineNotification } from "react-icons/ai";
 import { getNotifications } from "../../actions/notificationActions";
 
 const SideNav = ({ logout, notifications, getNotifications }) => {
@@ -41,12 +37,6 @@ const SideNav = ({ logout, notifications, getNotifications }) => {
                 {unreadNotifications}
               </span>
             ) : null}
-          </Link>
-        </li>
-        <li>
-          <Link to="/messages">
-            <AiOutlineMail />
-            Messages
           </Link>
         </li>
         <li>

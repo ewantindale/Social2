@@ -1,3 +1,22 @@
+.create-comment button {
+  width: 20%;
+  height: 50%;
+  align-self: center;
+  background: #05204a;
+  color: #fbfcff;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.create-comment button:hover {
+  background: #fbfcff;
+  color: #05204a;
+  border: 1px solid #05204a;
+}
+
 /* latin */
 @font-face {
   font-family: "Playfair Display";
@@ -63,7 +82,6 @@ body {
 }
 
 .sidenav {
-  border-right: 1px solid lightgrey;
   background-color: #05204a;
   padding: 1rem;
 }
@@ -154,86 +172,75 @@ body {
   color: grey;
 }
 
-.notification-screen,
-.home-screen,
-.single-post-screen,
-.conversation-screen,
-.single-conversation-screen {
-  width: 100%;
-  padding: 1rem;
-  overflow: scroll;
-}
-
-.conversation-screen a {
-  text-decoration: none;
-}
-
-.conversation {
+.create-comment input {
+  width: 80%;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid lightgrey;
 }
 
-.conversation .name {
-  font-weight: bold;
-  text-decoration: none !important;
+.notification-screen,
+.home-screen,
+.single-post-screen {
+  width: 100%;
 }
 
-.conversation .message {
-  color: grey;
-}
-
-.conversation .date {
-  float: right;
-  color: grey;
-}
-
-.conversation:hover {
-  background-color: #f5f5f5;
-}
-
-.single-conversation-screen .message-feed-wrapper {
-  overflow: scroll;
-  display: flex;
-  flex-direction: column-reverse;
-  height: 500px;
-}
-
-.single-conversation-screen .message {
-  background-color: white;
-  border: 1px solid black;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  width: 75%;
-  float: left;
-}
-
-.single-conversation-screen .message .message-header {
-  display: flex;
-  flex-direction: row;
-}
-
-.single-conversation-screen .message .message-name {
-  font-weight: bold;
-}
-
-.single-conversation-screen .message .message-body {
-  text-overflow: break-word;
-}
-
-.single-conversation-screen .message .message-date {
-  float: right;
-  color: grey;
-}
-
-.single-conversation-screen .message .message-actions {
-  float: right;
-}
-
-.message.sent {
+.notification-screen .header,
+.home-screen .header,
+.single-post-screen .header {
   background-color: #05204a;
-  color: white;
-  float: right;
+  color: #fbfcff;
+}
+
+.header h2 {
+  display: none;
+  margin-bottom: 0;
+}
+
+.home-screen .header {
+  background-color: #05204a;
+  color: #fbfcff;
+  padding: 1rem;
+}
+
+.home-screen .header .create-post {
+  display: flex;
+  width: 100%;
+  background-color: #fbfcff;
+}
+
+.home-screen .header .create-post input {
+  width: 80%;
+  color: #05204a;
+  border: none;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+.home-screen .header .create-post button {
+  width: 20%;
+  text-transform: uppercase;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+  padding: 1rem;
+  background: none;
+  border: none;
+  border-left: 1px solid lightgrey;
+  color: #05204a;
+}
+
+.home-screen .header .create-post button:hover {
+  background-color: #05204a;
+  color: #fbfcff;
+  border: 1px solid #fbfcff;
+}
+
+.notification-feed,
+.post-feed {
+  overflow-y: scroll;
+  max-height: 100%;
 }
 
 .login-screen {
@@ -277,7 +284,7 @@ body {
 
 .post {
   border-top: 1px solid lightgrey;
-  padding: 1rem 0;
+  padding: 1rem;
 }
 
 .post .post-body {
@@ -319,8 +326,8 @@ body {
   display: flex;
   align-items: center;
   border-bottom: 1px solid lightgrey;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 1rem 0.5rem;
+  font-size: 0.9rem;
 }
 
 .notification .notification-icon {
@@ -333,29 +340,6 @@ body {
 }
 
 .notification-unread {
-  font-weight: bold;
-}
-
-.create-post {
-  display: flex;
-}
-
-.create-post input {
-  width: 75%;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.create-post button {
-  width: 25%;
-  background: none;
-  border: none;
-  font-family: "Roboto Condensed", sans-serif;
-  text-transform: uppercase;
-  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -374,5 +358,15 @@ body {
   }
   .sidenav ul.navClosed {
     display: block;
+  }
+  .header {
+    padding: 1rem 1rem 1rem 0 !important;
+  }
+  .header h2 {
+    display: block;
+    margin: 0;
+  }
+  .home-screen .header h2 {
+    margin-bottom: 1rem;
   }
 }
