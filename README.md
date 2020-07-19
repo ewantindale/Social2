@@ -10,16 +10,16 @@
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Authentication
 - [bcrypt](https://github.com/dcodeIO/bcrypt.js/) - Password hashing
 
-### Screenshots
+## Screenshots
 
-#### Login
+### Login
 
 <img src="https://github.com/ewantindale/Social2/blob/master/screenshots/login.png" alt="Login Screen">
 
-#### Posts
+### Posts
 
 <img src="https://github.com/ewantindale/Social2/blob/master/screenshots/feed.png" alt="Post Screen">
 
-#### Notifications
+### Notifications
 
 <img src="https://github.com/ewantindale/Social2/blob/master/screenshots/notifications.png" alt="Notification Screen">
