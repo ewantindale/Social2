@@ -1,5 +1,7 @@
 # Social Media App
 
+[Live Demo on Heroku](https://ewan-social.herokuapp.com/)
+
 ## Built With
 
 - [React](https://reactjs.org/) - JavaScript UI library
